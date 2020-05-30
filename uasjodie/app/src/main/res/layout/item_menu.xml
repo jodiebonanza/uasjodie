@@ -25,12 +25,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_jabatan"
             android:text="Jabatan"
+            android:textColor="@android:color/holo_orange_dark"
             android:textStyle="bold"
             android:textSize="18sp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Detail"
+            android:textColor="@android:color/background_dark"
             android:id="@+id/btn_detail"
             android:textSize="20sp"/>
 
