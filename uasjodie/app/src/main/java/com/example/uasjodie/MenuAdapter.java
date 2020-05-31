@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -64,12 +65,25 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         public ImageView imdata;
         public TextView tvjabatandata;
         public TextView tvnamadata;
+        public Button btndetail;
         public MenuViewHolder(@NonNull View itemView) {
             super(itemView);
     imdata=itemView.findViewById(R.id.img_menu);
     tvjabatandata=itemView.findViewById(R.id.tv_jabatan);
     tvnamadata=itemView.findViewById(R.id.tv_nama);
+    btndetail=itemView.findViewById(R.id.btn_detail);
 
+            btndetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick((position));
+                        }
+                    }
+                }
+            });
         }
     }
 }
