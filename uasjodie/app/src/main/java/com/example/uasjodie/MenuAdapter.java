@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +19,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     private Context context;
     private ArrayList<Menu> menus;
+    private  onitiemClickListener mListener;
 
+    public interface onitiemClickListener{
+        void onItemClick(int position );
+    }
+    public void setonItemClickListener(onitiemClickListener listener){
+        mListener =listener;
+}
     public MenuAdapter(Context mcontext, ArrayList<Menu>menuonepiece){
         context=mcontext;
         menus=menuonepiece;
