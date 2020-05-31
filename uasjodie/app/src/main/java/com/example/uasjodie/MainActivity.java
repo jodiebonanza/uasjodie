@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -19,7 +20,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MenuAdapter.onitiemClickListener{
+    public static final String EXTRA_IMG ="gambar";
+    public static final String EXTRA_JABATAN ="jabatan";
+    public static final String EXTRA_NAMA ="nama";
+
     private  MenuAdapter menuAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Menu> menus;
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     menuAdapter= new MenuAdapter(MainActivity.this,menus);
                     recyclerView.setAdapter(menuAdapter);
+
+                    menuAdapter.setonItemClickListener(MainActivity.this);
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
@@ -71,6 +78,18 @@ public class MainActivity extends AppCompatActivity {
                   requestQueue.add(request);
 
                 }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        Menu clickedItem = menus.get(position);
+
+        detailIntent.putExtra(EXTRA_IMG, clickedItem.getGambar());
+        detailIntent.putExtra(EXTRA_JABATAN, clickedItem.getJabatan());
+        detailIntent.putExtra(EXTRA_NAMA, clickedItem.getNama());
+
+        startActivity(detailIntent);
+    }
 }
 
 
